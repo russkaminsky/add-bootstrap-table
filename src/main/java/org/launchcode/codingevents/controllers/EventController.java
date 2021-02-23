@@ -1,5 +1,6 @@
 package org.launchcode.codingevents.controllers;
 
+import org.launchcode.codingevents.models.Events;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +22,9 @@ import java.util.Map;
 public class EventController {
 
 
-    private static HashMap<String, List<String>> events = new HashMap<>();
+    //private static HashMap<String, List<String>> events = new HashMap<>();
     //private static ArrayList<String > eventAddress = new ArrayList<>();
+    private ArrayList<Events> events = new ArrayList<>();
 
     //listens to http://localhost:8080/events/
     @GetMapping
@@ -44,6 +46,7 @@ public class EventController {
     public String displayCreateEventForm(Model model) {
         model.addAttribute("title", "Create Event");
         return "events/create";
+
     }
 
     @PostMapping("create")
@@ -57,7 +60,9 @@ public class EventController {
         String addressSearch = "https://google.com/search?q=" + eventAddress.replace(' ','+');
         eventInfo.add(addressSearch);
 
-        events.put(eventName, eventInfo);
+        events.add(new Events(eventName,eventDescription,eventAddress,addressSearch));
+
+        //events.put(eventName, eventInfo);
 
         //eventInfo.get(0) //event description
         //eventInfo.get(1) //event address plain text

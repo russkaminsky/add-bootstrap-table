@@ -17,7 +17,7 @@
         <li><a href="/events/create">Create Event</a></li>
     </ul>
 </nav>
-
+<-- code to use a hash map for the table -->
 <th:block th:fragment="eventRow" th:each="event : ${events}">
     <tr>
     <td th:text="${event.getKey()}"></td>
@@ -27,6 +27,8 @@
         </td>
     </tr>>
 </th:block>
+
+
 
 <td th:fragment="eventAddressCol">
 <td>

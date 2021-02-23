@@ -14,9 +14,19 @@
     </tr>
     </thead>
     <tbody>
+    <th:block th:each="event : ${events}">
+    <tr>
+        <td th:text="${event.name}"></td>
+        <td th:text="${event.description}"></td>
+        <td>
+            <a target="_blank" th:text="${event.address}" th:href="${event.addressLink}"></a>
+        </td>
+    </tr>>
+    </th:block>
 
+<!--
     <th:block th:replace="fragments :: eventRow"></th:block>
-
+-->
     <!-- th:block for each loop example
     <th:block th:each="event : ${events}">
         <tr>
