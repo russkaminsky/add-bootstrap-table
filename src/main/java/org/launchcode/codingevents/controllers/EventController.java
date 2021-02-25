@@ -56,4 +56,22 @@ public class EventController {
         return "redirect:";
     }
 
+    //listens to http://localhost:8080/events/delete
+    @GetMapping("delete")
+    public String displayDeleteEventForm(Model model) {
+
+        model.addAttribute("events", events.getAll());
+        return "events/delete";
+
+    }
+
+    @PostMapping("delete")
+    public String deleteEvent(@RequestParam(required = false) Integer[] eventIds)
+    {
+        for(int i = 0; i<eventIds.length;i++) {
+            events.remove(eventIds[i]);
+        }
+        return "redirect:";
+    }
+
 }
