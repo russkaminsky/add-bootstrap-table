@@ -8,6 +8,7 @@
 <table class="table table-dark">
     <thead>
     <tr>
+        <th scope="col">ID</th>
         <th scope="col">Event Name</th>
         <th scope="col">Event Description</th>
         <th scope="col">Event Address</th>
@@ -16,6 +17,7 @@
     <tbody>
     <th:block th:each="event : ${events}">
     <tr>
+        <td th:text="${event.id}"></td>
         <td th:text="${event.name}"></td>
         <td th:text="${event.description}"></td>
         <td>
