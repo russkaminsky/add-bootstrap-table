@@ -1,13 +1,27 @@
 package org.launchcode.codingevents.models;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 public class Event {
 
+
+    @NotBlank(message = "Event Name Required")
+    @Size(min = 3, max = 12, message = "Name must be between 3 and 12 characters")
     private String name;
+
+    @NotBlank(message = "Please add a description")
+    @Size(max = 50, message = "Description cannot be bigger than 50 characters")
     private String description;
+
     private String address;
     private String addressLink;
+
+    @Email
+    private String contactEmail;
     private Integer id;
     private static Integer nextId = 1;
 
@@ -16,11 +30,13 @@ public class Event {
         this.description = description;
         this.address = address;
         this.addressLink =  "https://google.com/search?q=" + address.replace(' ','+');
-        this.id = nextId;
-        nextId++;
+        this.contactEmail = contactEmail;
     }
 
-
+public Event(){
+    this.id = nextId;
+    nextId++;
+}
 
     public String getName() {
         return name;
@@ -58,6 +74,15 @@ public class Event {
     public void setAddressLink(String addressLink) {
         this.addressLink = addressLink;
     }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+    }
+
 
     public Integer getId() {
         return id;
