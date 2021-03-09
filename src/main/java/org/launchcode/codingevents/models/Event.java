@@ -25,18 +25,23 @@ public class Event {
     private Integer id;
     private static Integer nextId = 1;
 
-    public Event(String name, String description, String address) {
+    private EventType type;
+
+    public Event(String name, String description, String address, String contactEmail, EventType type) {
+        this();
         this.name = name;
         this.description = description;
         this.address = address;
         this.addressLink =  "https://google.com/search?q=" + address.replace(' ','+');
         this.contactEmail = contactEmail;
+        this.type = type;
+
     }
 
-public Event(){
-    this.id = nextId;
-    nextId++;
-}
+    public Event() {
+        this.id = nextId;
+        nextId++;
+    }
 
     public String getName() {
         return name;
@@ -69,6 +74,14 @@ public Event(){
 
     public String getAddressLink() {
         return addressLink;
+    }
+
+    public EventType getType() {
+        return type;
+    }
+
+    public void setType(EventType type) {
+        this.type = type;
     }
 
     public void setAddressLink(String addressLink) {
