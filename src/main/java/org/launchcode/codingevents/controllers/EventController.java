@@ -1,6 +1,7 @@
 package org.launchcode.codingevents.controllers;
 
 import org.launchcode.codingevents.data.EventData;
+import org.launchcode.codingevents.data.EventRepository;
 import org.launchcode.codingevents.models.Event;
 import org.launchcode.codingevents.models.EventType;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,7 @@ public class EventController {
         model.addAttribute("title", "All Events");
         //Add the events object to "events" attribute
         model.addAttribute("events", events.getAll());
+        EventRepository eventRepo;
 
         return "events/index";
     }
