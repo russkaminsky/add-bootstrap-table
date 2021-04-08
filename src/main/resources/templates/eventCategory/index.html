@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+<header th:replace="fragments :: header"></header>
+
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Category Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="eventCategory : ${eventCategories}">
+    <tr>
+        <td th:text="${eventCategory.id}"></td>
+        <td th:text="${eventCategory.name}"></td>
+    </tr>>
+    </th:block>
+    </tbody>
+</table>
+<!--- code for block loop unsorted list
+<ul>
+    <th:block th:each="event : ${events}">
+        <li th:text="${event}"></li>
+    </th:block>
+</ul>
+-->
+
+</body>
+</html>

@@ -1,32 +1,28 @@
 package org.launchcode.codingevents.controllers;
 
-import org.launchcode.codingevents.data.EventData;
 import org.launchcode.codingevents.data.EventRepository;
 import org.launchcode.codingevents.models.Event;
 import org.launchcode.codingevents.models.EventType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 //import java.util.HashMap;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 /**
  * Created by Chris Bay
  * Modified by Russ Kaminsky
  */
-@Controller
-@RequestMapping("events")
+    @Controller
+    @RequestMapping("events")
 public class EventController {
 
-
-    //private ArrayList<Event> events = new ArrayList<>();
-    private static EventData events;
+    @Autowired
+    private EventRepository eventRepository;
 
     //listens to http://localhost:8080/events/
     @GetMapping
@@ -34,8 +30,9 @@ public class EventController {
         //Add values to the model, set title to All Events
         model.addAttribute("title", "All Events");
         //Add the events object to "events" attribute
-        model.addAttribute("events", events.getAll());
-        EventRepository eventRepo;
+        model.addAttribute("events", eventRepository.findAll());
+
+
 
         return "events/index";
     }
@@ -65,12 +62,12 @@ public class EventController {
 */
     @PostMapping("create")
     public String processCreateEventForm(@ModelAttribute @Valid Event newEvent, Errors errors, Model model) {
-        if(errors.hasErrors()) {
+                if(errors.hasErrors()) {
             model.addAttribute("title", "Create Event");
             return "events/create";
         }
 
-        EventData.add(newEvent);
+        eventRepository.save(newEvent);
         return "redirect:";
     }
 
@@ -78,7 +75,7 @@ public class EventController {
     @GetMapping("delete")
     public String displayDeleteEventForm(Model model) {
 
-        model.addAttribute("events", events.getAll());
+        model.addAttribute("events", eventRepository.findAll());
         return "events/delete";
 
     }
@@ -88,7 +85,7 @@ public class EventController {
     {
 
         for(int i = 0; i<eventIds.length;i++) {
-            events.remove(eventIds[i]);
+            eventRepository.deleteById(eventIds[i]);
         }
         return "redirect:";
     }
