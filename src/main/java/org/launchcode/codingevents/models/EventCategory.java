@@ -1,5 +1,7 @@
 package org.launchcode.codingevents.models;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.Entity;
 import javax.validation.constraints.Size;
 
@@ -8,6 +10,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 public class EventCategory extends AbstractEntity {
+
 
 
     @Size(min = 3, message = "Name must be at least 3 characters long")

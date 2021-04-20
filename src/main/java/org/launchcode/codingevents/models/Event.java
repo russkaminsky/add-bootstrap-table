@@ -1,5 +1,7 @@
 package org.launchcode.codingevents.models;
 
+import org.launchcode.codingevents.controllers.EventController;
+
 import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -23,20 +25,16 @@ public class Event extends AbstractEntity {
     @Email
     private String contactEmail;
 
+    private EventCategory eventCategory;
 
-
-
-
-    private EventType type;
-
-    public Event(String name, String description, String address, String contactEmail, EventType type) {
+    public Event(String name, String description, String address, String contactEmail, EventCategory eventCategory) {
         this();
         this.name = name;
         this.description = description;
         this.address = address;
         this.addressLink =  "https://google.com/search?q=" + address.replace(' ','+');
         this.contactEmail = contactEmail;
-        this.type = type;
+        this.eventCategory = eventCategory;
 
     }
 
@@ -75,12 +73,12 @@ public class Event extends AbstractEntity {
         return addressLink;
     }
 
-    public EventType getType() {
-        return type;
+    public Integer getEventCategory() {
+        return eventCategory.getId();
     }
 
-    public void setType(EventType type) {
-        this.type = type;
+    public void setEventCategory(EventCategory eventCategory) {
+        this.eventCategory = eventCategory;
     }
 
     public void setAddressLink(String addressLink) {
