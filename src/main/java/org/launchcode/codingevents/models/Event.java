@@ -1,15 +1,12 @@
 package org.launchcode.codingevents.models;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
 import javax.validation.constraints.NotBlank;
-import java.util.Objects;
+import javax.validation.constraints.Size;
 
 @Entity
-public class Event {
+public class Event extends AbstractEntity {
 
 
     @NotBlank(message = "Event Name Required")
@@ -26,9 +23,7 @@ public class Event {
     @Email
     private String contactEmail;
 
-    @Id
-    @GeneratedValue
-    private Integer id;
+
 
 
 
@@ -101,20 +96,5 @@ public class Event {
     }
 
 
-    public Integer getId() {
-        return id;
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Event events = (Event) o;
-        return id.equals(events.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
