@@ -3,8 +3,11 @@ package org.launchcode.codingevents.models;
 import org.launchcode.codingevents.controllers.EventController;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -25,6 +28,8 @@ public class Event extends AbstractEntity {
     @Email
     private String contactEmail;
 
+    @ManyToOne
+    @NotNull(message = "Category is required")
     private EventCategory eventCategory;
 
     public Event(String name, String description, String address, String contactEmail, EventCategory eventCategory) {
